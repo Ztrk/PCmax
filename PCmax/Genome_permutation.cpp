@@ -65,7 +65,7 @@ int Genome_permutation::get_fitness() {
 	return fitness;
 }
 
-int Genome_permutation::score(const vector<int> &jobs) {
+int Genome_permutation::score() {
     fitness = list_algorithm(processors, chromosome).first;
     return fitness;
 }

@@ -17,7 +17,7 @@ public:
 
     void mutate(double mutation_rate);
 	int get_fitness();
-    int score(const std::vector<int> &);
+    int score();
     void print() const;
 private:
 	int processors;
