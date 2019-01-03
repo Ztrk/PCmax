@@ -16,7 +16,8 @@ private:
 	std::vector<int> jobs;
 	std::vector<Genome> individuals;
 
-	const unsigned population = 50;
+	// population is initialized in constructor
+	const unsigned population;
 	const unsigned best_chosen = 15;
 	const unsigned random_chosen = 10;
 	const double mutation_rate = 0.005;
