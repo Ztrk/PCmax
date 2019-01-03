@@ -18,9 +18,30 @@ Genetic_algorithm::Genetic_algorithm (int p, vector<int> tasks) : processors(p),
 	auto lpt_result = lpt(p, jobs);
 	individuals.push_back( Genome(p, lpt_result.first, lpt_result.second, rng) ); 
 
+	vector<pair<int, int>> jobs_with_indexes(jobs.size());
+
+	for (unsigned i = 0; i < jobs.size(); ++i) {
+		jobs_with_indexes[i].first = jobs[i];
+		jobs_with_indexes[i].second = i;
+	}
+
 	for (unsigned i = 1; i < population; ++i) {
-		individuals.push_back(Genome(p, jobs.size(), rng));
-		individuals[i].score(jobs);
+		shuffle(jobs_with_indexes.begin(), jobs_with_indexes.end(), rng.get_generator());
+
+		vector<int> shuffled_jobs(jobs.size());
+		for (unsigned i = 0; i < jobs.size(); ++i) {
+			shuffled_jobs[i] = jobs_with_indexes[i].first;
+		}
+		
+		auto result = list_algorithm(processors, shuffled_jobs);
+
+		vector<int> chromosome(jobs.size());
+		
+		for (unsigned i = 0; i < jobs.size(); ++i) {
+			chromosome[jobs_with_indexes[i].second] = result.second[i];
+		}
+
+		individuals.push_back( Genome(processors, result.first, chromosome, rng) );
 	} 
 }
 
