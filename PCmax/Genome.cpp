@@ -31,9 +31,6 @@ Genome crossover(const Genome &parent1, const Genome &parent2) {
 		if (child.rng.get_double() < 0.5) 
 			child.chromosome[i] = parent2.chromosome[i];
 	}
-    //for (unsigned i = child.get_gene(Genome::gen); i < parent2.chromosome.size(); ++i) {
-    //    child.chromosome[i] = parent2.chromosome[i];
-    //}
 
     return child;
 }
@@ -44,11 +41,7 @@ void Genome::mutate(double mutation_rate) {
 		if (rng.get_double() < mutation_rate)
 			i = rng.get_processor();	
 	}
-    //if(get_double(gen) < 0.2) {
-    //    chromosome[get_gene(gen)] = get_processor(gen);
-    //}
 }
-
 
 
 int Genome::get_fitness() {
