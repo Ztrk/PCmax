@@ -41,7 +41,7 @@ int Genetic_algorithm::solve (int sec) {
 	while(chrono::high_resolution_clock::now() - start < time_limit)  {
 
 		vector<Genome_permutation> new_individuals(individuals);
-		sort(individuals.begin(), individuals.end());
+		nth_element(individuals.begin(), individuals.begin() + best_chosen - 1, individuals.end());
 				
 		// takes individuals with best fitness
 		for (unsigned i = 0; i < best_chosen; ++i)
