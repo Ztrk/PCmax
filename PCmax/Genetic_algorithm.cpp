@@ -3,7 +3,6 @@
 #include <limits>
 #include <algorithm>
 #include <chrono>
-#include <utility>
 
 #include "Genome_permutation.h"
 #include "Genetic_algorithm.h"

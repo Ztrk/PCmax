@@ -1,7 +1,6 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
-#include <utility>
 
 #include "LPT.h"
 #include "Genetic_algorithm.h"
