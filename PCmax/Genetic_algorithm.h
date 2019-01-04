@@ -18,9 +18,9 @@ private:
 
 	// population is initialized in constructor
 	const unsigned population;
-	const unsigned best_chosen = 15;
-	const unsigned random_chosen = 10;
-	const double mutation_rate = 0.005;
+	const unsigned best_chosen = 10;
+	const unsigned random_chosen = 15;
+	const double mutation_rate = 0.010;
 
 	Genetic_randoms rng;
 };

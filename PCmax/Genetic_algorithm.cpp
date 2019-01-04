@@ -11,7 +11,7 @@
 #include "LPT.h"
 using namespace std;
 
-Genetic_algorithm::Genetic_algorithm (int p, vector<int> tasks) : processors(p), jobs(tasks), population(50), rng(p, jobs.size(), population) {
+Genetic_algorithm::Genetic_algorithm (int p, vector<int> tasks) : processors(p), jobs(tasks), population(30), rng(p, jobs.size(), population) {
 
 	sort(jobs.begin(), jobs.end(), greater<int>());	
 
