@@ -21,9 +21,9 @@ int main() {
 
 	Genetic_algorithm ga(p, jobs);
 	
-	cout << "List algorithm: " << list_algorithm(p, jobs).first << endl;
+	cout << "List algorithm: " << list_algorithm(p, jobs) << endl;
 
-	cout << "LPT: " << lpt(p, jobs).first << endl;
+	cout << "LPT: " << lpt(p, jobs) << endl;
 	cout << "Lower bound: " << lower_bound << endl;
 	
 	cout << "Genetic algorithm." << endl;

@@ -6,9 +6,8 @@
 using namespace std;
 
 
-pair<int, vector<int>> list_algorithm(int processors, const vector<int> &jobs) {
+int list_algorithm(int processors, const vector<int> &jobs) {
 	vector<int> processor_time(processors, 0);
-	vector<int> jobs_assignment(jobs.size());
 
 	for (unsigned i = 0; i < jobs.size(); ++i) {
 		int job = jobs[i];
@@ -21,7 +20,6 @@ pair<int, vector<int>> list_algorithm(int processors, const vector<int> &jobs) {
 		}
 
 		processor_time[min_val] += job;
-		jobs_assignment[i] = min_val;
 	}
 
 	int max_val = 0;
@@ -31,10 +29,10 @@ pair<int, vector<int>> list_algorithm(int processors, const vector<int> &jobs) {
 		}
 	}
 	
-	return { processor_time[max_val], jobs_assignment };
+	return processor_time[max_val];
 }	
 
-pair<int, vector<int>> lpt(int processors, vector<int> jobs) {
+int lpt(int processors, vector<int> jobs) {
 	sort(jobs.begin(), jobs.end(), greater<int>());	
 	return list_algorithm(processors, jobs);
 }

@@ -8,7 +8,6 @@
 #include "Genome_permutation.h"
 #include "Genetic_algorithm.h"
 #include "Genetic_randoms.h"
-#include "LPT.h"
 using namespace std;
 
 Genetic_algorithm::Genetic_algorithm (int p, vector<int> tasks) : processors(p), jobs(tasks), population(50), rng(p, jobs.size(), population) {
