@@ -47,11 +47,6 @@ int Genetic_algorithm::solve (int sec) {
 		for (unsigned i = 0; i < best_chosen; ++i)
 			new_individuals[i] = individuals[i];
 
-		/*for (unsigned i = best_chosen; i < 5; ++i) {
-			new_individuals[i] = Genome(processors, jobs.size(), rng);
-			new_individuals[i].score(jobs);
-		}*/
-		
 		// takes random individuals
 		sample(individuals.begin() + best_chosen, individuals.end(), 
 				new_individuals.begin() + best_chosen, random_chosen, rng.get_generator());
