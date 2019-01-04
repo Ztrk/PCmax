@@ -1,7 +1,6 @@
 #include <vector>
 #include <algorithm>
 #include <functional>
-#include <utility>
 #include "LPT.h"
 using namespace std;
 
@@ -10,26 +9,10 @@ int list_algorithm(int processors, const vector<int> &jobs) {
 	vector<int> processor_time(processors, 0);
 
 	for (unsigned i = 0; i < jobs.size(); ++i) {
-		int job = jobs[i];
-
-		int min_val = 0;
-		for (int j = 0; j < processors; ++j) {
-			if (processor_time[min_val] > processor_time[j]) {
-				min_val = j;
-			}
-		}
-
-		processor_time[min_val] += job;
+		*min_element(processor_time.begin(), processor_time.end()) += jobs[i];
 	}
 
-	int max_val = 0;
-	for (int i = 0; i < processors; ++i) {
-		if (processor_time[max_val] < processor_time[i]) {
-			max_val = i;
-		}
-	}
-	
-	return processor_time[max_val];
+	return *max_element(processor_time.begin(), processor_time.end());
 }	
 
 int lpt(int processors, vector<int> jobs) {
