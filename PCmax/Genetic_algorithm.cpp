@@ -3,24 +3,23 @@
 #include <limits>
 #include <algorithm>
 #include <chrono>
-#include <utility>
 
-#include "Genome.h"
+#include "Genome_permutation.h"
 #include "Genetic_algorithm.h"
 #include "Genetic_randoms.h"
-#include "LPT.h"
 using namespace std;
 
 Genetic_algorithm::Genetic_algorithm (int p, vector<int> tasks) : processors(p), jobs(tasks), population(30), rng(p, jobs.size(), population) {
 
 	sort(jobs.begin(), jobs.end(), greater<int>());	
 
-	auto lpt_result = lpt(p, jobs);
-	individuals.push_back( Genome(p, lpt_result.first, lpt_result.second, rng) ); 
+	individuals.push_back( Genome_permutation(processors, jobs, rng) ); 
+	individuals[0].score();
 
 	for (unsigned i = 1; i < population; ++i) {
-		individuals.push_back(Genome(p, jobs.size(), rng));
-		individuals[i].score(jobs);
+		shuffle(jobs.begin(), jobs.end(), rng.get_generator());
+		individuals.push_back(Genome_permutation(p, jobs, rng));
+		individuals[i].score();
 	} 
 }
 
@@ -40,8 +39,8 @@ int Genetic_algorithm::solve (int sec) {
 
 	while(chrono::high_resolution_clock::now() - start < time_limit)  {
 
-		vector<Genome> new_individuals(individuals);
-		sort(individuals.begin(), individuals.end());
+		vector<Genome_permutation> new_individuals(individuals);
+		nth_element(individuals.begin(), individuals.begin() + best_chosen - 1, individuals.end());
 				
 		// takes individuals with best fitness
 		for (unsigned i = 0; i < best_chosen; ++i)
@@ -59,16 +58,16 @@ int Genetic_algorithm::solve (int sec) {
 			if(parent2 >= parent1)
 				++parent2;
 
-			Genome child = crossover(individuals[parent1], individuals[parent2]);
+			Genome_permutation child = crossover(individuals[parent1], individuals[parent2]);
 			child.mutate(mutation_rate);
-			child.score(jobs);
+			child.score();
 			new_individuals[i] = child;
 		}
 		
 		individuals = new_individuals;	
 		
-		/*Genome *worst = &individuals[0];
-		for(Genome &g : individuals) {
+		/*Genome_permutation *worst = &individuals[0];
+		for(Genome_permutation &g : individuals) {
 			if(*worst < g)
 				worst = &g;
 		}

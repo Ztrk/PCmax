@@ -6,10 +6,9 @@
 
 /**
 *   list algorithm for PCmax problem
-*   returns result(time) and 
-*   assigment vector - on which processor the given job is executed
+*   returns result(time)
 */
-std::pair<int, std::vector<int>> list_algorithm(int processors, const std::vector<int> &jobs);
-std::pair<int, std::vector<int>> lpt(int processors, std::vector<int> jobs);
+int list_algorithm(int processors, const std::vector<int> &jobs);
+int lpt(int processors, std::vector<int> jobs);
 
 #endif
