@@ -27,6 +27,8 @@ Genome_permutation crossover(const Genome_permutation &parent1, const Genome_per
         swap(begin, end);
 
     unordered_map<unsigned, unsigned> sum;
+
+    // count tasks outside of [begin, end]
     for (unsigned i = 0; i < child.chromosome.size(); ++i) {
         if (i == begin) {
             i = end;
@@ -39,7 +41,7 @@ Genome_permutation crossover(const Genome_permutation &parent1, const Genome_per
             ++sum[child.chromosome[i]];
     }
     
-
+    // if gene is counted replace by parent2 gene
     for (unsigned i = 0, j = 0; i < child.chromosome.size() && j < parent2.chromosome.size(); ++j) {
         if (i == begin) {
             i = end + 1;
