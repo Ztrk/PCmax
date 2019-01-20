@@ -16,17 +16,17 @@ int main() {
 		sum += jobs[i];
 	}
 
-	int lower_bound = max(sum/p, *max_element(jobs.begin(), jobs.end()));
+	double lower_bound = max(static_cast<double>(sum)/p, static_cast<double>(*max_element(jobs.begin(), jobs.end())));
 
 	Genetic_algorithm ga(p, jobs);
 	
-	cout << "List algorithm: " << list_algorithm(p, jobs) << endl;
+	//cout << "List algorithm: " << list_algorithm(p, jobs) << endl;
 
-	cout << "LPT: " << lpt(p, jobs) << endl;
+	//cout << "LPT: " << lpt(p, jobs) << endl;
 	cout << "Lower bound: " << lower_bound << endl;
 	
 	cout << "Genetic algorithm." << endl;
-	cout << ga.solve(15) << endl;
+	cout << ga.solve(5) << endl;
 	
 	return 0;
 }
