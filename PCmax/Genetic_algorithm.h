@@ -17,10 +17,10 @@ private:
 	std::vector<Genome_permutation> individuals;
 
 	// initialized in constructor
-	unsigned population;
-	unsigned best_chosen;
-	unsigned random_chosen;
-	double mutation_rate;
+	const unsigned population;
+	const unsigned best_chosen;
+	const unsigned random_chosen;
+	const double mutation_rate;
 
 	Genetic_randoms rng;
 };

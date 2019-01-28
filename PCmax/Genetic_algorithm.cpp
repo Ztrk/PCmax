@@ -10,7 +10,7 @@
 using namespace std;
 
 Genetic_algorithm::Genetic_algorithm (int p, vector<int> tasks, unsigned population, unsigned best_chosen, unsigned random_chosen, double mutation_rate) 
-: processors(p), jobs(tasks), population(population), best_chosen(best_chosen), mutation_rate(mutation_rate), rng(p, jobs.size(), population) 
+: processors(p), jobs(tasks), population(population), best_chosen(best_chosen), random_chosen(random_chosen), mutation_rate(mutation_rate), rng(p, jobs.size(), population) 
 {
 
 	sort(jobs.begin(), jobs.end(), greater<int>());	
