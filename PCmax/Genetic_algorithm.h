@@ -7,7 +7,7 @@
 
 class Genetic_algorithm {
 public:
-	Genetic_algorithm(int, std::vector<int>);
+	Genetic_algorithm (int p, std::vector<int> tasks, unsigned population, unsigned best_chosen, unsigned random_chosen, double mutation_rate);
 	void test();
 	void print();
 	int solve(int);
@@ -16,11 +16,11 @@ private:
 	std::vector<int> jobs;
 	std::vector<Genome_permutation> individuals;
 
-	// population is initialized in constructor
-	const unsigned population;
-	const unsigned best_chosen = 10;
-	const unsigned random_chosen = 15;
-	const double mutation_rate = 0.010;
+	// initialized in constructor
+	unsigned population;
+	unsigned best_chosen;
+	unsigned random_chosen;
+	double mutation_rate;
 
 	Genetic_randoms rng;
 };

@@ -9,7 +9,9 @@
 #include "Genetic_randoms.h"
 using namespace std;
 
-Genetic_algorithm::Genetic_algorithm (int p, vector<int> tasks) : processors(p), jobs(tasks), population(30), rng(p, jobs.size(), population) {
+Genetic_algorithm::Genetic_algorithm (int p, vector<int> tasks, unsigned population, unsigned best_chosen, unsigned random_chosen, double mutation_rate) 
+: processors(p), jobs(tasks), population(population), best_chosen(best_chosen), mutation_rate(mutation_rate), rng(p, jobs.size(), population) 
+{
 
 	sort(jobs.begin(), jobs.end(), greater<int>());	
 
@@ -78,7 +80,7 @@ int Genetic_algorithm::solve (int sec) {
 		++counter;
 	}
 	
-	cout << "Iterations: " << counter << endl;
+	cout << counter << " ";
 
 	return min_element(individuals.begin(), individuals.end())->get_fitness();
 }
