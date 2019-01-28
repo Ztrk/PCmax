@@ -10,21 +10,23 @@
 using namespace std;
 
 int main(int argc, char **argv) {
-	unsigned population = 50, best_chosen = 10, random_chosen = 15, mutation_rate = 0.01;
+	unsigned population = 50, best_chosen = 10, random_chosen = 15, time = 2;
+	double mutation_rate = 0.01;
 
-	if (argc >= 6 && strcmp(argv[1], "-p") ==  0) {
+	if (argc >= 7 && strcmp(argv[1], "-p") ==  0) {
 		try {
 			population = stoul(argv[2]);
 			best_chosen = stoul(argv[3]);
 			random_chosen = stoul(argv[4]);
 			mutation_rate = stod(argv[5]);
+			time = stoul(argv[6]);
 			if (best_chosen + random_chosen > population)
 				throw invalid_argument("Populatiion must be greater or equal than best chosen + random chosen");
 		}
 		catch(logic_error &e) {
 			cerr << e.what() << endl;
 			cerr << "Using default values" << endl;
-			population = 50, best_chosen = 10, random_chosen = 15, mutation_rate = 0.01;
+			population = 50, best_chosen = 10, random_chosen = 15, mutation_rate = 0.01, time = 2;
 		}
 	}
 
@@ -48,7 +50,7 @@ int main(int argc, char **argv) {
 	//cout << "Lower bound: " << lower_bound << endl;
 	
 	//cout << "Genetic algorithm." << endl;
-	cout << ga.solve(2) << endl;
+	cout << ga.solve(time) << endl;
 	
 	return 0;
 }
